@@ -1,0 +1,5 @@
+# *
+transaction
+!user/
+!other/
+!.gitignore
