@@ -22,7 +22,9 @@ import CourseTaskEdit from './components/course/course-task/CourseTaskEditCompon
 import CourseTaskQuestionCreate from './components/course/course-task/course-task-question/CourseTaskQuestionCreateComponent';
 import CourseTaskQuestionEdit from './components/course/course-task/course-task-question/CourseTaskQuestionEditComponent';
 
+import Table from './components/table/TableComponent'
 
+import Discussion from './components/discussion/DiscussionComponent'
 
 Vue.use(VueRouter);
 
@@ -100,6 +102,20 @@ const router = new VueRouter({
                     path: "/course-teacher-management/:course_id/create",
                     name: "course-teacher-management.create",
                     component: CourseTeacherCreate
+                },
+
+                //CRUD
+                {
+                    path: "/crud/:model",
+                    name: "crud",
+                    component: Table
+                },
+
+                //DISCUSSION
+                {
+                    path: "/discussion",
+                    name: "discussion",
+                    component: Discussion
                 },
 
             ]

@@ -11,23 +11,45 @@
 
       <span class="ml-5">Menu</span>
       <v-list dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-          :to="{ name: item.name }"
-          class="my-4"
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+        <div v-for="item in items" :key="item.title" class="my-4">
+          <!-- SINGLE MENU -->
+          <v-list-item v-if="!item.children" link :to="{ name: item.name }">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title style="font-size: 14px">
-              {{ item.title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+            <v-list-item-content>
+              <v-list-item-title style="font-size: 14px">
+                {{ item.title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <!-- HAS CHILDREN -->
+          <v-list-group
+            v-else
+            v-model="item.active"
+            :prepend-icon="item.icon"
+            no-action
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item
+              v-for="child in item.children"
+              :key="child.name"
+              link
+              :to="{ name: item.name, params: child.params }"
+            >
+              <v-list-item-content>
+                <v-list-item-title v-text="child.title"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
+        </div>
       </v-list>
     </v-navigation-drawer>
 
@@ -100,9 +122,49 @@ export default {
           title: "Dashboard",
         },
         {
+          name: "discussion",
+          icon: "mdi-chart-bar",
+          title: "Discussion",
+        },
+        {
           name: "course-management",
           icon: "mdi-book",
           title: "Course Management",
+        },
+        {
+          name: "crud",
+          icon: "mdi-monitor-star",
+          title: "Content Management",
+          children: [
+            {
+              title: "Announcement",
+              params: { model: "announcement" },
+            },
+            {
+              title: "Position",
+              params: { model: "position" },
+            },
+            {
+              title: "Course Type",
+              params: { model: "course-type" },
+            },
+            {
+              title: "Difficulty",
+              params: { model: "difficulty" },
+            },
+            {
+              title: "Education",
+              params: { model: "education" },
+            },
+            {
+              title: "Golongan",
+              params: { model: "golongan" },
+            },
+            {
+              title: "Grade",
+              params: { model: "grade" },
+            },
+          ],
         },
       ],
     };

@@ -95,7 +95,6 @@ class ReferenceSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             Announcement::create([
-                'user_id'   => $faker->numberBetween(1, 3),
                 'title'     => $faker->sentence(),
                 'content'   => $faker->paragraph()
             ]);

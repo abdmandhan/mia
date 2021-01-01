@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ReferenceSeeder::class,
             UserSeeder::class,
-            CourseSeeder::class
+            CourseSeeder::class,
+            DiscussionSeeder::class,
         ]);
 
         //absesnsi

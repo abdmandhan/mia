@@ -12,8 +12,8 @@ import router from "./../router"
 const ApiService = {
     init() {
         Vue.use(VueAxios, axios);
-        // Vue.axios.defaults.baseURL = "http://mia.test/api";
-        Vue.axios.defaults.baseURL = "http://mia.syailendra.xyz/api";
+        Vue.axios.defaults.baseURL = "http://mia.test/api";
+        // Vue.axios.defaults.baseURL = "http://mia.syailendra.xyz/api";
     },
 
     /**
@@ -40,10 +40,10 @@ const ApiService = {
      * @param slug
      * @returns {*}
      */
-    get(resource, slug = "") {
+    get(resource, params = {}) {
         this.setHeader();
 
-        return Vue.axios.get(`${resource}/${slug}`).then((result) => {
+        return Vue.axios.get(`${resource}`, { params: params }).then((result) => {
             // store.dispatch(MESSAGE, { message: result.data.message + result.data.code, color: result.data.status ? 'green' : 'red' });
             console.log("GET RESPONSE", result);
 
