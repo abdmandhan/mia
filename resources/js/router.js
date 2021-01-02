@@ -28,6 +28,14 @@ import Discussion from './components/discussion/DiscussionComponent'
 import Profile from './components/profile/ProfileComponent'
 import ChangePassword from './components/profile/ChangePasswordComponent'
 
+import Transaction from './components/transaction/TransactionComponent'
+import TransactionCreate from './components/transaction/TransactionCreateComponent'
+import TransactionEdit from './components/transaction/TransactionEditComponent'
+
+import User from './components/user/UserComponent'
+import UserCreate from './components/user/UserCreateComponent'
+import UserEdit from './components/user/UserEditComponent'
+
 //student
 import Teacher from './components/student/TeacherComponent'
 
@@ -124,6 +132,41 @@ const router = new VueRouter({
                     name: "discussion",
                     component: Discussion
                 },
+
+                //TRANSACTION
+                {
+                    path: "/transaction-management",
+                    name: "transaction-management",
+                    component: Transaction
+                },
+                {
+                    path: "/transaction-management/create",
+                    name: "transaction-management.create",
+                    component: TransactionCreate
+                },
+                {
+                    path: "/transaction-management/:transaction_id/edit",
+                    name: "transaction-management.edit",
+                    component: TransactionEdit
+                },
+
+                //User
+                {
+                    path: "/user-management",
+                    name: "user-management",
+                    component: User
+                },
+                {
+                    path: "/user-management/create",
+                    name: "user-management.create",
+                    component: UserCreate
+                },
+                {
+                    path: "/user-management/:user_id/edit",
+                    name: "user-management.edit",
+                    component: UserEdit
+                },
+
 
                 //Profile
                 {

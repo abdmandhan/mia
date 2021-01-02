@@ -14,6 +14,8 @@ use App\Http\Controllers\Api\Resource\EducationController;
 use App\Http\Controllers\Api\Resource\GolonganController;
 use App\Http\Controllers\Api\Resource\GradeController;
 use App\Http\Controllers\Api\Resource\PositionController;
+use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\CourseTeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +39,8 @@ Route::group([
     Route::get('dashboard', [PageController::class, 'dashboard']);
     Route::get('teacher', [PageController::class, 'teacher']);
     Route::resource('discussion', DiscussionController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('transaction', TransactionController::class);
     Route::resource('course', CourseController::class);
     Route::resource('course-teacher', CourseTeacherController::class);
     Route::resource('course-content', CourseContentController::class);

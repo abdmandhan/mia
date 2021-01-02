@@ -178,6 +178,16 @@ export default {
           title: "Dashboard",
         },
         {
+          name: "transaction-management",
+          icon: "mdi-chart-bar",
+          title: "Transaction Management",
+        },
+        {
+          name: "user-management",
+          icon: "mdi-chart-bar",
+          title: "User Management",
+        },
+        {
           name: "discussion",
           icon: "mdi-chart-bar",
           title: "Discussion",

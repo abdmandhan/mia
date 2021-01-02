@@ -6,9 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseType;
 use App\Models\Difficulty;
+use App\Models\Education;
+use App\Models\Golongan;
 use App\Models\Grade;
+use App\Models\Position;
 use App\Models\QuestionType;
+use App\Models\TransactionStatus;
 use App\Models\User;
+use App\Models\UserType;
 use App\Rules\PasswordSanctum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,7 +90,13 @@ class AuthController extends Controller
             'courses'       => Course::all(['id', 'name']),
             'difficulties'  => Difficulty::all(['id', 'name']),
             'question_types'  => QuestionType::all(['id', 'name']),
-            'teachers'       => User::where('user_type_id', 2)->get(['id', 'name'])
+            'teachers'       => User::where('user_type_id', 2)->get(['id', 'name']),
+            'transaction_statuses'  => TransactionStatus::all(['id', 'name']),
+            'student'       => User::where('user_type_id', 3)->get(['id', 'name']),
+            'positions'     => Position::all(['id', 'name']),
+            'golongans'     => Golongan::all(['id', 'name']),
+            'educations'     => Education::all(['id', 'name']),
+            'user_types'     => UserType::all(['id', 'name']),
         ];
 
         return $data;
@@ -117,7 +128,7 @@ class AuthController extends Controller
 
         //jika student
 
-        return $this->success($request->all(), 'berhasil merubah data');
+        return $this->success([], 'berhasil merubah data');
     }
 
     public function changePassword(Request $request)
