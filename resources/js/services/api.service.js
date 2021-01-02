@@ -12,8 +12,7 @@ import router from "./../router"
 const ApiService = {
     init() {
         Vue.use(VueAxios, axios);
-        // Vue.axios.defaults.baseURL = "http://mia.test/api";
-        Vue.axios.defaults.baseURL = "http://mia.syailendra.xyz/api";
+        Vue.axios.defaults.baseURL = process.env.MIX_API_URL;
     },
 
     /**
