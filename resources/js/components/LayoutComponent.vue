@@ -80,7 +80,7 @@
         </template>
 
         <v-list>
-          <v-list-item>
+          <v-list-item :to="{ name: 'profile' }">
             <v-list-item-title>{{ currentUser.name }}</v-list-item-title>
           </v-list-item>
           <v-list-item @click="logout">
@@ -110,12 +110,67 @@ export default {
     if (!this.isAuthenticated) {
       this.$router.push({ name: "login" });
     }
+    this.updateTime();
+  },
+  watch: {
+    currentUser() {
+      switch (this.currentUser.user_type_id) {
+        case 1:
+          this.items = this.menu_admin;
+          break;
+        case 2:
+          this.items = this.menu_teacher;
+          break;
+        case 3:
+          this.items = this.menu_student;
+          break;
+
+        default:
+          this.items = this.menu_student;
+          break;
+      }
+    },
   },
   data() {
     return {
       date: "",
       drawer: null,
-      items: [
+      items: [],
+      menu_student: [
+        {
+          name: "dashboard",
+          icon: "mdi-chart-bar",
+          title: "Dashboard",
+        },
+        {
+          name: "discussion",
+          icon: "mdi-chart-bar",
+          title: "Discussion",
+        },
+        {
+          name: "teacher",
+          icon: "mdi-chart-bar",
+          title: "Teacher",
+        },
+      ],
+      menu_teacher: [
+        {
+          name: "dashboard",
+          icon: "mdi-chart-bar",
+          title: "Dashboard",
+        },
+        {
+          name: "discussion",
+          icon: "mdi-chart-bar",
+          title: "Discussion",
+        },
+        {
+          name: "course-management",
+          icon: "mdi-book",
+          title: "Course Management",
+        },
+      ],
+      menu_admin: [
         {
           name: "dashboard",
           icon: "mdi-chart-bar",
@@ -168,9 +223,6 @@ export default {
         },
       ],
     };
-  },
-  mounted() {
-    this.updateTime();
   },
   methods: {
     logout() {

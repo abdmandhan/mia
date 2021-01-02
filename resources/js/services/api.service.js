@@ -12,8 +12,8 @@ import router from "./../router"
 const ApiService = {
     init() {
         Vue.use(VueAxios, axios);
-        // Vue.axios.defaults.baseURL = "http://mia.test/api";
-        Vue.axios.defaults.baseURL = "http://mia.syailendra.xyz/api";
+        Vue.axios.defaults.baseURL = "http://mia.test/api";
+        // Vue.axios.defaults.baseURL = "http://mia.syailendra.xyz/api";
     },
 
     /**
@@ -44,7 +44,7 @@ const ApiService = {
         this.setHeader();
 
         return Vue.axios.get(`${resource}`, { params: params }).then((result) => {
-            // store.dispatch(MESSAGE, { message: result.data.message + result.data.code, color: result.data.status ? 'green' : 'red' });
+            store.dispatch(MESSAGE, { message: result.data.message, color: result.status ? 'green' : 'red' });
             console.log("GET RESPONSE", result);
 
             return result;
@@ -70,7 +70,7 @@ const ApiService = {
 
         return Vue.axios.post(`${resource}`, params)
             .then((result) => {
-                // store.dispatch(MESSAGE, { message: result.data.message + result.data.code, color: result.data.status ? 'green' : 'red' });
+                store.dispatch(MESSAGE, { message: result.data.message, color: result.status ? 'green' : 'red' });
                 console.log("POST RESPONSE", result);
                 return result;
 
@@ -107,7 +107,7 @@ const ApiService = {
 
         return Vue.axios.post(`${resource}`, params)
             .then((result) => {
-                // store.dispatch(MESSAGE, { message: result.data.message + result.data.code, color: result.data.status ? 'green' : 'red' });
+                store.dispatch(MESSAGE, { message: result.data.message, color: result.status ? 'green' : 'red' });
                 console.log("PUT RESPONSE", result);
                 return result;
 
@@ -132,7 +132,7 @@ const ApiService = {
 
         return Vue.axios.delete(`${resource}`)
             .then((result) => {
-                // store.dispatch(MESSAGE, { message: result.data.message + result.data.code, color: result.data.status ? 'green' : 'red' });
+                store.dispatch(MESSAGE, { message: result.data.message, color: result.status ? 'green' : 'red' });
                 console.log("DELETE RESPONSE", result);
                 return result;
 
@@ -146,10 +146,6 @@ const ApiService = {
                 return err.response;
             });
 
-        // return Vue.axios.delete(resource).catch(error => {
-        //     // console.log(error);
-        //     throw new Error(`[RWV] ApiService ${error}`);
-        // });
     }
 };
 

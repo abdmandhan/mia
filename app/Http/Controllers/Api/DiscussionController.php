@@ -43,7 +43,15 @@ class DiscussionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'text'  => ['required']
+        ]);
+
+        $data['user_id'] = Auth::id();
+
+        $discussion = Discussion::create($data);
+
+        return $this->success($discussion);
     }
 
     /**

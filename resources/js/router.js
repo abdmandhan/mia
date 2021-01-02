@@ -25,6 +25,13 @@ import CourseTaskQuestionEdit from './components/course/course-task/course-task-
 import Table from './components/table/TableComponent'
 
 import Discussion from './components/discussion/DiscussionComponent'
+import Profile from './components/profile/ProfileComponent'
+import ChangePassword from './components/profile/ChangePasswordComponent'
+
+//student
+import Teacher from './components/student/TeacherComponent'
+
+
 
 Vue.use(VueRouter);
 
@@ -117,6 +124,29 @@ const router = new VueRouter({
                     name: "discussion",
                     component: Discussion
                 },
+
+                //Profile
+                {
+                    path: "/profile",
+                    name: "profile",
+                    component: Profile
+                },
+                {
+                    path: "/change-password",
+                    name: "change.password",
+                    component: ChangePassword
+                },
+
+
+                // STUDENT ROUTES
+
+                //Teacher
+                {
+                    path: "/teacher",
+                    name: "teacher",
+                    component: Teacher
+                },
+
 
             ]
         },

@@ -16,7 +16,6 @@ class CreateDiscussionsTable extends Migration
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('course_type_id');
             $table->longText('text');
             $table->boolean('is_done')->default(0);
             $table->timestamps();

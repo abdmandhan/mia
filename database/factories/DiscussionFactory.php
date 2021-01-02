@@ -22,7 +22,6 @@ class DiscussionFactory extends Factory
     public function definition()
     {
         return [
-            'course_type_id'    => $this->faker->numberBetween(1, 3),
             'text'              => $this->faker->paragraph(),
             'is_done'           => $this->faker->numberBetween(0, 1)
         ];

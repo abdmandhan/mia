@@ -25,7 +25,11 @@ class AuthController extends Controller
             'password'  => ['required', 'string', new PasswordSanctum],
         ]);
 
-        $user = User::with(['user_type'])->where('email', $data->email)->first();
+        $user = User::with([
+            'user_type',
+            'user_teacher',
+            'user_student'
+        ])->where('email', $data->email)->first();
 
         if (Hash::check($data->password, $user->password)) {
             return $this->success([
@@ -60,7 +64,11 @@ class AuthController extends Controller
 
     public function verify()
     {
-        $user = User::with(['user_type'])->find(Auth::id());
+        $user = User::with([
+            'user_type',
+            'user_teacher',
+            'user_student'
+        ])->find(Auth::id());
 
         return $this->success([
             'user'  => $user,
@@ -81,5 +89,46 @@ class AuthController extends Controller
         ];
 
         return $data;
+    }
+
+    public function update(Request $request)
+    {
+        $data = $request->validate([
+            'name'          => ['required'],
+            'email'         => ['required', Rule::unique('users')->ignore(Auth::id()), 'email'],
+            'phone'         => ['required'],
+            'address'       => ['required'],
+            'photo'         => ['required'],
+        ]);
+
+        if ($request->file('photo')) {
+            $path = "";
+
+            if ($request->file('photo')) {
+                $path = 'storage/' . $request->file('photo')->store('user', 'public');
+            }
+
+            $data['photo'] = $path;
+        } else {
+            unset($data['photo']);
+        }
+
+        User::find(Auth::id())->update($data);
+
+        //jika student
+
+        return $this->success($request->all(), 'berhasil merubah data');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $data = (object) $request->validate([
+            'old_password'  => ['required', new PasswordSanctum],
+            'new_password'  => ['required', 'confirmed'],
+        ]);
+
+        Auth::user()->update(['password' => $data->new_password]);
+
+        return $this->success([], 'berhasil merubah password');
     }
 }

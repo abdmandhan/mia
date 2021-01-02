@@ -27,12 +27,15 @@ Route::group([
     'middleware'    => ['auth:sanctum']
 ], function () {
     Route::get('verify', [AuthController::class, 'verify']);
+    Route::post('update', [AuthController::class, 'update']);
+    Route::post('change-password', [AuthController::class, 'changePassword']);
 
     Route::post('discussion/reply', [DiscussionController::class, 'storeReply']);
     Route::delete('discussion/reply/{id}', [DiscussionController::class, 'destroyReply']);
 
     //page
     Route::get('dashboard', [PageController::class, 'dashboard']);
+    Route::get('teacher', [PageController::class, 'teacher']);
     Route::resource('discussion', DiscussionController::class);
     Route::resource('course', CourseController::class);
     Route::resource('course-teacher', CourseTeacherController::class);
