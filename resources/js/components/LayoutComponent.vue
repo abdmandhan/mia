@@ -153,6 +153,21 @@ export default {
           icon: "mdi-chart-bar",
           title: "Teacher",
         },
+        {
+          name: "s-course",
+          icon: "mdi-chart-bar",
+          title: "Course",
+        },
+        {
+          name: "s-transaction",
+          icon: "mdi-chart-bar",
+          title: "Transaction",
+        },
+        {
+          name: "s-learning",
+          icon: "mdi-chart-bar",
+          title: "Learning",
+        },
       ],
       menu_teacher: [
         {

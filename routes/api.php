@@ -38,6 +38,17 @@ Route::group([
     //page
     Route::get('dashboard', [PageController::class, 'dashboard']);
     Route::get('teacher', [PageController::class, 'teacher']);
+
+    Route::get('s-transaction', [PageController::class, 'sTransaction']);
+    Route::get('s-transaction/{transaction_id}', [PageController::class, 'sTransactionDetail']);
+
+    Route::get('s-course', [PageController::class, 'sCourse']);
+    Route::get('s-course/{course_id}', [PageController::class, 'sCourseDetail']);
+    Route::post('s-course', [PageController::class, 'sCourseJoin']);
+
+    Route::get('s-learning', [PageController::class, 'slearning']);
+    Route::get('s-learning/{learning_id}', [PageController::class, 'slearningDetail']);
+
     Route::resource('discussion', DiscussionController::class);
     Route::resource('user', UserController::class);
     Route::resource('transaction', TransactionController::class);

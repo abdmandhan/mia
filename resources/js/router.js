@@ -38,7 +38,12 @@ import UserEdit from './components/user/UserEditComponent'
 
 //student
 import Teacher from './components/student/TeacherComponent'
-
+import SCourse from './components/student/SCourseComponent'
+import SCourseDetail from './components/student/SCourseDetailComponent'
+import STransaction from './components/student/STransactionComponent'
+import STransactionDetail from './components/student/STransactionDetailComponent'
+import SLearning from './components/student/SLearningComponent'
+import SLearningDetail from './components/student/SLearningDetailComponent'
 
 
 Vue.use(VueRouter);
@@ -189,6 +194,43 @@ const router = new VueRouter({
                     name: "teacher",
                     component: Teacher
                 },
+
+                //Course
+                {
+                    path: "/s-course",
+                    name: "s-course",
+                    component: SCourse
+                },
+                {
+                    path: "/s-course/:course_id",
+                    name: "s-course.detail",
+                    component: SCourseDetail
+                },
+
+                //Transaction
+                {
+                    path: "/s-transaction",
+                    name: "s-transaction",
+                    component: STransaction
+                },
+                {
+                    path: "/s-transaction/:transaction_id",
+                    name: "s-transaction.detail",
+                    component: STransactionDetail
+                },
+
+                //Learning
+                {
+                    path: "/s-learning",
+                    name: "s-learning",
+                    component: SLearning
+                },
+                {
+                    path: "/s-learning/:learning_id",
+                    name: "s-learning.detail",
+                    component: SLearningDetail
+                },
+
 
 
             ]

@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $this->belongsTo(UserStudent::class, 'id', 'user_id');
     }
 
+    public function course()
+    {
+        return $this->hasMany(CourseStudent::class, 'user_id');
+    }
+
     protected static function booted()
     {
         static::saving(function ($user) {
