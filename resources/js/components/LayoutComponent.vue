@@ -114,6 +114,7 @@ export default {
   },
   watch: {
     currentUser() {
+      console.log("currenuser", this.currentUser);
       switch (this.currentUser.user_type_id) {
         case 1:
           this.items = this.menu_admin;
