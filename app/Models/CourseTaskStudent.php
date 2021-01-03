@@ -8,4 +8,14 @@ class CourseTaskStudent extends Base
     {
         return $this->belongsTo(CourseTask::class, 'course_task_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

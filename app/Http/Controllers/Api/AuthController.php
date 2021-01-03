@@ -126,8 +126,6 @@ class AuthController extends Controller
 
         User::find(Auth::id())->update($data);
 
-        //jika student
-
         return $this->success([], 'berhasil merubah data');
     }
 

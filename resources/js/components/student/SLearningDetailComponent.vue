@@ -49,10 +49,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, i) in learning.course.course_task" :key="i">
-              <td>{{ item.name }}</td>
-              <td>{{ item.difficulty.name }}</td>
-              <td>{{ item.score }}</td>
+            <tr
+              v-for="(item, i) in learning.course.course_task_student"
+              :key="i"
+            >
+              <td>{{ item.course_task.name }}</td>
+              <td>{{ item.course_task.difficulty.name }}</td>
+              <td>
+                <span v-if="item.score">
+                  <v-chip small>{{ item.score }}</v-chip>
+                </span>
+                <span v-else-if="item.finish_date">
+                  <v-chip small>Menunggu Feedback dari Guru</v-chip>
+                </span>
+              </td>
               <td>{{ item.start_date }}</td>
               <td>{{ item.finish_date }}</td>
               <td>
@@ -71,9 +81,7 @@
                         <v-card-title class="headline">
                           {{ dialogTitle }}
                         </v-card-title>
-                        <v-card-text>
-                          <!-- Waktu Mengerjakan : {{ dialogTime }} -->
-                        </v-card-text>
+                        <v-card-text> </v-card-text>
                         <v-card-actions>
                           <v-spacer></v-spacer>
                           <v-btn
@@ -191,27 +199,21 @@ export default {
       return window.location.origin + "/" + item;
     },
     openDialog(item) {
-      console.log("item", item);
-      this.dialogTitle = item.name;
+      this.dialogTitle = item.course_task.name;
       this.dialog = true;
     },
     openDialogReview(item) {
       this.dialogReview = true;
     },
     startLearning(item) {
-      axios
-        .post(`${this.$baseUrl}/api/s/learning`, item)
-        .then((result) => {
-          console.log("item", item);
-          this.btnLoading = false;
-          this.$router.push({
-            name: "dashboard.learning.task.show",
-            params: { id: item.course_task_id },
-          });
-          console.log("result", result);
-        })
-        .catch((err) => {});
-      this.btnLoading = true;
+      ApiService.post(`s-learning`, item).then((result) => {
+        console.log("item", item);
+        this.btnLoading = false;
+        this.$router.push({
+          name: "s-learning.task",
+          params: { task_id: item.course_task_id },
+        });
+      });
     },
   },
 };

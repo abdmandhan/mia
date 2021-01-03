@@ -44,6 +44,11 @@ import STransaction from './components/student/STransactionComponent'
 import STransactionDetail from './components/student/STransactionDetailComponent'
 import SLearning from './components/student/SLearningComponent'
 import SLearningDetail from './components/student/SLearningDetailComponent'
+import SLearningTask from './components/student/SLearningTaskComponent'
+
+//teacher
+import Feedback from './components/feedback/FeedbackComponent'
+import FeedbackDetail from './components/feedback/FeedbackDetailComponent'
 
 
 Vue.use(VueRouter);
@@ -185,6 +190,18 @@ const router = new VueRouter({
                     component: ChangePassword
                 },
 
+                //Feedback Course Task
+                {
+                    path: "/feedback",
+                    name: "feedback",
+                    component: Feedback
+                },
+                {
+                    path: "/feedback/:feedback_id",
+                    name: "feedback.detail",
+                    component: FeedbackDetail
+                },
+
 
                 // STUDENT ROUTES
 
@@ -229,6 +246,11 @@ const router = new VueRouter({
                     path: "/s-learning/:learning_id",
                     name: "s-learning.detail",
                     component: SLearningDetail
+                },
+                {
+                    path: "/s-learning/:task_id/task",
+                    name: "s-learning.task",
+                    component: SLearningTask
                 },
 
 

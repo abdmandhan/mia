@@ -185,6 +185,11 @@ export default {
           icon: "mdi-book",
           title: "Course Management",
         },
+        {
+          name: "feedback",
+          icon: "mdi-book",
+          title: "Feedback",
+        },
       ],
       menu_admin: [
         {

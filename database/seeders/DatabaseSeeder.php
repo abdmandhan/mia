@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $users = User::all();
         foreach ($users as $key => $value) {
             for ($i = 1; $i <= 20; $i++) {
-                $date = date_create("2020-12-$i");
+                $date = date_create("2021-01-$i");
                 Absensi::create([
                     'user_id'   => $value->id,
                     'date'      => $date

@@ -7,7 +7,9 @@ use App\Models\Absensi;
 use App\Models\Announcement;
 use App\Models\Course;
 use App\Models\CourseStudent;
+use App\Models\CourseTask;
 use App\Models\CourseTaskStudent;
+use App\Models\CourseTaskStudentAnswer;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -41,6 +43,45 @@ class PageController extends Controller
             'user_teacher.position',
             'user_teacher.golongan',
         ])->where('user_type_id', 2)->get());
+    }
+
+    public function feedback()
+    {
+        return $this->success(CourseTaskStudent::with([
+            'user',
+            'course',
+            'course_task',
+        ])->get());
+    }
+
+    public function feedbackScore(Request $request)
+    {
+        $data = $request->validate([
+            'score'         => ['required', 'min:0', 'max:100', 'numeric']
+        ]);
+
+        CourseTaskStudent::find($request->input('id'))->update([
+            'score'     => $data['score'],
+            'scorer_id' => Auth::id()
+        ]);
+
+        return $this->success();
+    }
+
+    public function feedbackDetail($feedback_id)
+    {
+        $user_id = CourseTaskStudent::find($feedback_id)->user_id;
+
+        return $this->success(CourseTaskStudent::with([
+            'course_task.student_answer' => function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            },
+            'user',
+            'course',
+            'course_task.difficulty',
+            'course_task.student_answer.question',
+            'course_task.student_answer.answer'
+        ])->find($feedback_id));
     }
 
     public function sCourse()
@@ -153,7 +194,65 @@ class PageController extends Controller
         return $this->success(CourseStudent::with([
             'course.course_type',
             'course.course_content',
-            'course.course_task.difficulty',
+            'course.course_task_student.course_task.difficulty',
+            'course.course_task_student.course_task.course_task_student_answer.question',
+            'course.course_task_student.course_task.course_task_student_answer.answer'
         ])->find($learning_id));
+    }
+
+    public function sLearningStart(Request $request)
+    {
+        $data = (object) $request->input();
+
+        $course_task_student = CourseTaskStudent::find($data->id);
+        $course_task_student->update([
+            'start_date'    => now()
+        ]);
+
+        return $this->success();
+    }
+
+    public function sLearningFinish(Request $request)
+    {
+        $answer = (object) $request->input('answer');
+        $task = (object) $request->input('task');
+
+        foreach ($answer as $key => $value) {
+            if (is_integer($value)) {
+                $data = [
+                    'user_id'       => Auth::id(),
+                    'task_id'       => $task->id,
+                    'question_id'   => $key,
+                    'answer_id'     => $value,
+                ];
+            } else {
+                $data = [
+                    'user_id'       => Auth::id(),
+                    'task_id'       => $task->id,
+                    'question_id'   => $key,
+                    'answer_essay'  => $value,
+                ];
+            }
+
+            CourseTaskStudentAnswer::updateOrCreate([
+                'user_id'       => Auth::id(),
+                'task_id'       => $task->id,
+                'question_id'   => $key,
+            ], $data);
+        }
+
+        $course_task_student = CourseTaskStudent::where('user_id', Auth::id())->where('course_task_id', $task->id);
+        $course_task_student->update([
+            'finish_date'   => now()
+        ]);
+
+        return $this->success();
+    }
+
+    public function sLearningTask($task_id)
+    {
+        return $this->success(CourseTask::with([
+            'course_task_question.answer'
+        ])->find($task_id));
     }
 }

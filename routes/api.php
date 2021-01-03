@@ -38,6 +38,9 @@ Route::group([
     //page
     Route::get('dashboard', [PageController::class, 'dashboard']);
     Route::get('teacher', [PageController::class, 'teacher']);
+    Route::get('feedback', [PageController::class, 'feedback']);
+    Route::post('feedback', [PageController::class, 'feedbackScore']);
+    Route::get('feedback/{feedback_id}', [PageController::class, 'feedbackDetail']);
 
     Route::get('s-transaction', [PageController::class, 'sTransaction']);
     Route::get('s-transaction/{transaction_id}', [PageController::class, 'sTransactionDetail']);
@@ -47,7 +50,10 @@ Route::group([
     Route::post('s-course', [PageController::class, 'sCourseJoin']);
 
     Route::get('s-learning', [PageController::class, 'slearning']);
-    Route::get('s-learning/{learning_id}', [PageController::class, 'slearningDetail']);
+    Route::get('s-learning/{learning_id}', [PageController::class, 'sLearningDetail']);
+    Route::get('s-learning/{task_id}/task', [PageController::class, 'sLearningTask']);
+    Route::post('s-learning', [PageController::class, 'sLearningStart']);
+    Route::post('s-learning/task', [PageController::class, 'sLearningFinish']);
 
     Route::resource('discussion', DiscussionController::class);
     Route::resource('user', UserController::class);
