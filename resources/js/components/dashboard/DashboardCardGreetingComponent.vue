@@ -13,7 +13,7 @@
         <v-row>
           <v-col class="text-center">
             <v-avatar>
-              <v-img src="https://randomuser.me/api/portraits/men/85.jpg" />
+              <v-img :src="generateUrl(currentUser.photo)" />
             </v-avatar>
           </v-col>
         </v-row>
@@ -55,6 +55,11 @@ export default {
   },
   computed: {
     ...mapGetters(["isAuthenticated", "currentUser"]),
+  },
+  methods: {
+    generateUrl(item) {
+      return window.location.origin + "/" + item;
+    },
   },
 };
 </script>

@@ -72,9 +72,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on">
             <v-avatar size="40">
-              <v-img
-                src="https://randomuser.me/api/portraits/men/85.jpg"
-              ></v-img>
+              <v-img :src="generateUrl(currentUser.photo)" />
             </v-avatar>
           </v-btn>
         </template>
@@ -256,6 +254,9 @@ export default {
     };
   },
   methods: {
+    generateUrl(item) {
+      return window.location.origin + "/" + item;
+    },
     logout() {
       this.$store
         .dispatch(LOGOUT)
