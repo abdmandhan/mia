@@ -91,7 +91,18 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name'              => ['required'],
+            'course_type_id'    => ['required'],
+            'desc'              => ['required'],
+            'is_premium'        => ['boolean'],
+            'price'             => [Rule::requiredIf($request->input('is_premium')), 'nullable', 'numeric'],
+            'grade_id'          => ['required'],
+        ]);
+
+        Course::find($id)->update($data);
+
+        return $this->success();
     }
 
     /**

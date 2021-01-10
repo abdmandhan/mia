@@ -7,6 +7,13 @@ import Layout from './components/LayoutComponent';
 import Login from './components/auth/LoginComponent';
 import Register from './components/auth/RegisterComponent';
 
+import Tryout from './components/tryout/TryoutComponent';
+import TryoutCreate from './components/tryout/TryoutCreateComponent';
+import TryoutEdit from './components/tryout/TryoutEditComponent';
+
+import TryoutQuestionCreate from './components/tryout/tryout-question/TryoutQuestionCreateComponent';
+import TryoutQuestionEdit from './components/tryout/tryout-question/TryoutQuestionEditComponent';
+
 import Course from './components/course/CourseComponent';
 import CourseCreate from './components/course/CourseCreateComponent';
 import CourseEdit from './components/course/CourseEditComponent';
@@ -66,6 +73,35 @@ const router = new VueRouter({
                     path: "/dashboard",
                     name: "dashboard",
                     component: Dashboard
+                },
+
+                //Tryout
+                {
+                    path: "/tryout-management",
+                    name: "tryout-management",
+                    component: Tryout
+                },
+                {
+                    path: "/tryout-management/create",
+                    name: "tryout-management.create",
+                    component: TryoutCreate
+                },
+                {
+                    path: "/tryout-management/:tryout_id/edit",
+                    name: "tryout-management.edit",
+                    component: TryoutEdit
+                },
+
+                //Tryout Question
+                {
+                    path: "/tryout-question-management/create",
+                    name: "tryout-question-management.create",
+                    component: TryoutQuestionCreate
+                },
+                {
+                    path: "/tryout-question-management/:tryout_question_id/edit",
+                    name: "tryout-question-management.edit",
+                    component: TryoutQuestionEdit
                 },
 
                 //Course

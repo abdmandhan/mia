@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Absensi;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,19 +19,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CourseSeeder::class,
             DiscussionSeeder::class,
-            TransactionSeeder::class
+            TransactionSeeder::class,
+            // AbsensiSeeder::class,
+            TryoutSeeder::class
         ]);
-
-        //absesnsi
-        $users = User::all();
-        foreach ($users as $key => $value) {
-            for ($i = 1; $i <= 20; $i++) {
-                $date = date_create("2021-01-$i");
-                Absensi::create([
-                    'user_id'   => $value->id,
-                    'date'      => $date
-                ]);
-            }
-        }
     }
 }

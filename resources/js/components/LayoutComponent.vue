@@ -89,18 +89,17 @@
     </v-app-bar>
 
     <v-main style="background-color: #f2f2f2">
-      <transition name="fade" mode="out-in">
-        <v-container>
-          <router-view></router-view>
-        </v-container>
-      </transition>
+      <v-container>
+        <transition name="fade-in-up">
+          <router-view />
+        </transition>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import ApiService from "../services/api.service";
 import { LOGOUT } from "./../services/store/auth.module";
 
 export default {
@@ -216,6 +215,11 @@ export default {
           title: "Course Management",
         },
         {
+          name: "tryout-management",
+          icon: "mdi-book",
+          title: "Tryout Management",
+        },
+        {
           name: "crud",
           icon: "mdi-monitor-star",
           title: "Content Management",
@@ -255,7 +259,9 @@ export default {
   },
   methods: {
     generateUrl(item) {
-      return window.location.origin + "/" + item;
+      if (item) {
+        return window.location.origin + "/" + item;
+      }
     },
     logout() {
       this.$store
@@ -288,14 +294,3 @@ export default {
   },
 };
 </script>
-
-<style lang="css">
-.fade-enter-active {
-  transition: opacity 0.25s ease;
-}
-
-.fade-leave-active {
-  transition: opacity 0.25s ease;
-  opacity: 0;
-}
-</style>

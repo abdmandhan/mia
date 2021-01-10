@@ -15,6 +15,8 @@ use App\Http\Controllers\Api\Resource\GolonganController;
 use App\Http\Controllers\Api\Resource\GradeController;
 use App\Http\Controllers\Api\Resource\PositionController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\TryoutController;
+use App\Http\Controllers\Api\TryoutQuestionController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\CourseTeacherController;
 use Illuminate\Http\Request;
@@ -58,6 +60,8 @@ Route::group([
     Route::resource('discussion', DiscussionController::class);
     Route::resource('user', UserController::class);
     Route::resource('transaction', TransactionController::class);
+    Route::resource('tryout', TryoutController::class);
+    Route::resource('tryout-question', TryoutQuestionController::class);
     Route::resource('course', CourseController::class);
     Route::resource('course-teacher', CourseTeacherController::class);
     Route::resource('course-content', CourseContentController::class);

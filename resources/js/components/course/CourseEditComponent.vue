@@ -100,7 +100,18 @@ export default {
       this.$router.back();
     },
     save() {
-      console.log("save");
+      this.errors = {};
+
+      ApiService.post(`course/${this.$route.params.course_id}`, {
+        ...this.course,
+        _method: "PUT",
+      }).then((result) => {
+        if (result.status == 200) {
+          this.back();
+        } else {
+          this.errors = result.data.errors;
+        }
+      });
     },
   },
   computed: {

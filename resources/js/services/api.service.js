@@ -13,7 +13,7 @@ const ApiService = {
     init() {
         Vue.use(VueAxios, axios);
         // Vue.axios.defaults.baseURL = "http://mia.test/api";
-        Vue.axios.defaults.baseURL = "http://mia.syailendra.xyz/api";
+        Vue.axios.defaults.baseURL = "http://mia.abdmandhan.com/api";
     },
 
     /**

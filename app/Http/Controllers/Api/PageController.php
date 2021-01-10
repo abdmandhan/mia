@@ -21,8 +21,9 @@ class PageController extends Controller
     //
     public function dashboard()
     {
-        $date_now = date_format(date_create(now()), 'yy-m-d');
+        $date_now = date_format(date_create(now()), 'Y-m-d');
         $absensi = Absensi::where('user_id', Auth::id())->where('date', '>=', $date_now)->first();
+
         if ($absensi == null) {
             Absensi::create([
                 'user_id'   => Auth::id(),
