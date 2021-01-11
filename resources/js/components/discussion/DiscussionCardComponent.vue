@@ -8,6 +8,9 @@
         {{ item.user.name }}
       </span>
       <v-spacer />
+      <v-btn icon @click="remove(item)">
+        <v-icon color="red">mdi-trash-can</v-icon>
+      </v-btn>
       <v-btn icon v-if="is_open" @click="open(item)">
         <v-icon>mdi-chevron-up</v-icon>
       </v-btn>
@@ -34,7 +37,12 @@
           </span>
         </div>
         {{ reply.text }}
-        <div class="text-right">{{ item.created_at }}</div>
+        <div class="text-right">
+          {{ item.created_at }}
+          <v-btn icon @click="removeComment(reply)">
+            <v-icon color="red">mdi-trash-can</v-icon>
+          </v-btn>
+        </div>
       </div>
 
       <!-- COMMENT -->
@@ -88,6 +96,17 @@ export default {
         } else {
           this.errors = result.data.errors;
         }
+      });
+    },
+    remove(item) {
+      ApiService.delete(`discussion/${item.id}`).then((result) => {
+        this.$emit("success");
+      });
+    },
+
+    removeComment(item) {
+      ApiService.delete(`discussion/reply/${item.id}`).then((result) => {
+        this.$emit("success");
       });
     },
   },

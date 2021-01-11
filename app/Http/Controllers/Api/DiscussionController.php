@@ -96,7 +96,8 @@ class DiscussionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Discussion::find($id)->delete();
+        return $this->success([], 'success delete disscussion');
     }
 
     public function storeReply(Request $request)
@@ -113,5 +114,12 @@ class DiscussionController extends Controller
         ]);
 
         return $this->success($reply);
+    }
+
+    public function destroyReply($id)
+    {
+        DiscussionReply::find($id)->delete();
+
+        return $this->success([], 'success delete comment');
     }
 }

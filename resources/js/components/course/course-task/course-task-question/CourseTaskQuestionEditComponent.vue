@@ -80,9 +80,10 @@ export default {
     },
     save() {
       console.log("asdf");
-      ApiService.put(
+      ApiService.post(
         `course-task-question/${this.$route.params.course_task_question_id}`,
         {
+          _method: "PUT",
           course_task_id: this.courseTaskQuestion.course_task_id,
           question: this.courseTaskQuestion.question,
           question_type_id: this.courseTaskQuestion.question_type_id,

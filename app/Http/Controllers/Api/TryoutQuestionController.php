@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tryout;
+use App\Models\TryoutAnswer;
 use App\Models\TryoutQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -38,7 +39,31 @@ class TryoutQuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'tryout_id'         => ['required'],
+            'question'          => ['required'],
+            'answer'            => ['array', Rule::requiredIf($request->input('question_type_id') == 1)],
+            'answer.0'          => ['required'],
+            'answer.1'          => ['required'],
+            'answer.2'          => ['required'],
+            'answer.3'          => ['required'],
+            'is_true'           => ['required']
+        ]);
+
+        $tryout_question = TryoutQuestion::create([
+            'tryout_id'     => $data['tryout_id'],
+            'question'      => $data['question']
+        ]);
+
+        foreach ($data['answer'] as $key => $value) {
+            TryoutAnswer::create([
+                'tryout_question_id'    => $tryout_question->id,
+                'answer'                => $value,
+                'is_true'               => $data['is_true'] == $key ? true : false
+            ]);
+        }
+
+        return $this->success(TryoutQuestion::with(['tryout_answer'])->find($tryout_question->id));
     }
 
     /**
@@ -49,7 +74,6 @@ class TryoutQuestionController extends Controller
      */
     public function show($id)
     {
-        //
         return $this->success(TryoutQuestion::with([
             'tryout_answer'
         ])->find($id));
@@ -82,12 +106,21 @@ class TryoutQuestionController extends Controller
             'answer.1'          => ['required'],
             'answer.2'          => ['required'],
             'answer.3'          => ['required'],
-            'is_true'           => ['required']
+            'is_true'           => ['required', 'numeric']
         ]);
 
-        Tryout::find($id)->update(['question' => $data['question']]);
+        TryoutQuestion::find($id)->update(['question' => $data['question']]);
 
-        return $this->success([$data, $request->all()]);
+        foreach ($data['answer'] as $key => $value) {
+            $is_true = $data['is_true'] == $value['id'] ? 1 : 0;
+
+            TryoutAnswer::find($value['id'])->update([
+                'answer'                => $value['answer'],
+                'is_true'               => $is_true
+            ]);
+        }
+
+        return $this->success(TryoutQuestion::with(['tryout_answer'])->find($id));
     }
 
     /**

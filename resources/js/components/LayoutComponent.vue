@@ -137,44 +137,44 @@ export default {
       menu_student: [
         {
           name: "dashboard",
-          icon: "mdi-chart-bar",
+          icon: "mdi-clipboard-edit-outline",
           title: "Dashboard",
         },
         {
           name: "discussion",
-          icon: "mdi-chart-bar",
+          icon: "mdi-chat",
           title: "Discussion",
         },
         {
           name: "teacher",
-          icon: "mdi-chart-bar",
+          icon: "mdi-account",
           title: "Teacher",
         },
         {
           name: "s-course",
-          icon: "mdi-chart-bar",
+          icon: "mdi-book",
           title: "Course",
         },
         {
           name: "s-transaction",
-          icon: "mdi-chart-bar",
+          icon: "mdi-cash",
           title: "Transaction",
         },
         {
           name: "s-learning",
-          icon: "mdi-chart-bar",
+          icon: "mdi-book-open",
           title: "Learning",
         },
       ],
       menu_teacher: [
         {
           name: "dashboard",
-          icon: "mdi-chart-bar",
+          icon: "mdi-clipboard-edit-outline",
           title: "Dashboard",
         },
         {
           name: "discussion",
-          icon: "mdi-chart-bar",
+          icon: "mdi-chat",
           title: "Discussion",
         },
         {
@@ -184,29 +184,29 @@ export default {
         },
         {
           name: "feedback",
-          icon: "mdi-book",
+          icon: "mdi-book-open-variant",
           title: "Feedback",
         },
       ],
       menu_admin: [
         {
           name: "dashboard",
-          icon: "mdi-chart-bar",
+          icon: "mdi-clipboard-edit-outline",
           title: "Dashboard",
         },
         {
           name: "transaction-management",
-          icon: "mdi-chart-bar",
+          icon: "mdi-cash",
           title: "Transaction Management",
         },
         {
           name: "user-management",
-          icon: "mdi-chart-bar",
+          icon: "mdi-account",
           title: "User Management",
         },
         {
           name: "discussion",
-          icon: "mdi-chart-bar",
+          icon: "mdi-chat",
           title: "Discussion",
         },
         {
@@ -216,7 +216,7 @@ export default {
         },
         {
           name: "tryout-management",
-          icon: "mdi-book",
+          icon: "mdi-book-check-outline",
           title: "Tryout Management",
         },
         {

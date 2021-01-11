@@ -39,7 +39,17 @@ class TryoutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name'              => ['required'],
+            'difficulty_id'     => ['required'],
+            'date_start'        => ['required', 'date'],
+            'date_finish'       => ['required', 'date', 'after:date_start'],
+            'time'              => ['required'],
+        ]);
+
+        $tryout = Tryout::create($data);
+
+        return $this->success($tryout);
     }
 
     /**
@@ -79,8 +89,8 @@ class TryoutController extends Controller
         $data = $request->validate([
             'name'              => ['required'],
             'difficulty_id'     => ['required'],
-            'date_start'        => ['required'],
-            'date_finish'       => ['required'],
+            'date_start'        => ['required', 'date'],
+            'date_finish'       => ['required', 'date', 'after:date_start'],
             'time'              => ['required'],
         ]);
 

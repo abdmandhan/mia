@@ -3,7 +3,7 @@
     <snackbar-component />
     <router-view></router-view>
     <v-footer app="app">
-      <v-flex class="text-xs-center">© 2020. Islamia Nuraini.</v-flex>
+      <v-flex class="text-xs-center">© Einstein.</v-flex>
     </v-footer>
   </v-app>
 </template>
