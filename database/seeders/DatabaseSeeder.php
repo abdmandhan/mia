@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CourseSeeder::class,
             DiscussionSeeder::class,
-            TransactionSeeder::class,
+            // TransactionSeeder::class,
             // AbsensiSeeder::class,
             TryoutSeeder::class
         ]);
