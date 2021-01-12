@@ -19,7 +19,7 @@ class Base extends Model
     // ];
 
     protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i',
+        // 'created_at' => 'datetime:Y-m-d H:i:s',
     ];
 
     protected $hidden = [
@@ -27,16 +27,29 @@ class Base extends Model
         'deleted_at'
     ];
 
-    protected static function booted()
+    protected $appends = [
+        'created_time'
+    ];
+
+    public function getCreatedTimeAttribute()
     {
-        static::saving(function ($data) {
-            $tz = 'Asia/Jakarta';
-            $timestamp = time();
-            $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
-            $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
-            if (!$data->created_at) {
-                $data->created_at = $dt->format('d.m.Y, H:i:s');
-            }
-        });
+        $tz = 'Asia/Jakarta';
+        $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+        $dt->setTimestamp(strtotime($this->created_at)); //adjust the object to correct timestamp
+
+        return $dt->format('d.m.Y, H:i:s');
     }
+
+    // protected static function booted()
+    // {
+    //     static::saving(function ($data) {
+    //         $tz = 'Asia/Jakarta';
+    //         $timestamp = time();
+    //         $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+    //         $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+    //         if (!$data->created_at) {
+    //             $data->created_at = $dt->format('d-m-Y, H:i:s');
+    //         }
+    //     });
+    // }
 }
