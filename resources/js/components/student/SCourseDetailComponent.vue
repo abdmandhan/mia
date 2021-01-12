@@ -116,6 +116,7 @@
       </v-dialog>
     </v-card-actions>
   </v-card>
+  <loader-component v-else />
 </template>
 <script>
 import ApiService from "../../services/api.service";

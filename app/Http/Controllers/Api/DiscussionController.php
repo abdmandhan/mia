@@ -48,6 +48,7 @@ class DiscussionController extends Controller
         ]);
 
         $data['user_id'] = Auth::id();
+        $data['created_at'] = now();
 
         $discussion = Discussion::create($data);
 
