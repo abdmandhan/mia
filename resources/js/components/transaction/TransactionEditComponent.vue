@@ -33,6 +33,12 @@
           :error-messages="errors.amount"
         />
 
+        <v-textarea
+          v-model="transaction.note"
+          label="Note"
+          :error-messages="errors.note"
+        />
+
         <v-select
           item-text="name"
           item-value="id"

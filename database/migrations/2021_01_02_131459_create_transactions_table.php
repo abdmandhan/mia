@@ -23,6 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->string('image')->nullable();
             $table->string('account_no')->nullable();
             $table->string('account_name')->nullable();
+            $table->longText('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

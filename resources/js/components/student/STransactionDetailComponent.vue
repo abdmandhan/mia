@@ -63,6 +63,11 @@
               <td>{{ transaction.account_name }}</td>
             </tr>
             <tr>
+              <td>Note</td>
+              <td>:</td>
+              <td>{{ transaction.note }}</td>
+            </tr>
+            <tr>
               <td>Image</td>
               <td>:</td>
               <td>

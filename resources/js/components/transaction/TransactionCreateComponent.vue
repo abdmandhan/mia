@@ -66,6 +66,12 @@
           label="Image"
           :error-messages="errors.image"
         />
+
+        <v-textarea
+          v-model="transaction.note"
+          label="Note"
+          :error-messages="errors.note"
+        />
       </v-form>
     </v-card-text>
     <v-card-actions>

@@ -20,6 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
+    $date_now = date_format(date_create(now()), 'Y-m-d H:i:s');
+
+    return $date_now;
     return response()->json(CourseTeacher::with([
         'teacher.user_teacher.golongan',
         'teacher.user_teacher.position',

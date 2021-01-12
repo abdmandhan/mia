@@ -52,6 +52,7 @@ class TransactionController extends Controller
             'image'                     => ['required', 'image'],
             'account_no'                => ['required'],
             'account_name'              => ['required'],
+            'note'                      => ['string', 'nullable']
         ]);
 
         $path = 'storage/' . $request->file('image')->store('transaction', 'public');
@@ -60,10 +61,12 @@ class TransactionController extends Controller
         $transaction = Transaction::create($data);
 
         if ($transaction->transaction_status_id == 2) {
-            CourseStudent::create([
-                'user_id'       => $transaction->user_id,
-                'course_id'     => $transaction->course_id,
-            ]);
+            if (!CourseStudent::where('user_id', $transaction->user_id)->where('course_id', $transaction->course_id)->first()) {
+                CourseStudent::create([
+                    'user_id'       => $transaction->user_id,
+                    'course_id'     => $transaction->course_id,
+                ]);
+            }
         }
 
         return $this->success($transaction);
@@ -106,20 +109,24 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'transaction_status_id' => ['required']
+            'transaction_status_id' => ['required'],
+            'note'                  => ['string', 'nullable'],
         ]);
 
         Transaction::find($id)->update([
+            'note'                  => $request->input('note'),
             'transaction_status_id' => $request->input('transaction_status_id')
         ]);
 
         $transaction = Transaction::find($id);
 
         if ($transaction->transaction_status_id == 2) {
-            CourseStudent::create([
-                'user_id'       => $transaction->user_id,
-                'course_id'     => $transaction->course_id,
-            ]);
+            if (!CourseStudent::where('user_id', $transaction->user_id)->where('course_id', $transaction->course_id)->first()) {
+                CourseStudent::create([
+                    'user_id'       => $transaction->user_id,
+                    'course_id'     => $transaction->course_id,
+                ]);
+            }
         }
 
         return $this->success([], 'berhasil update transaction');
