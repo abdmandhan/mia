@@ -12,9 +12,9 @@ class Base extends Model
 
     protected $guarded = [];
 
-    protected $fillable = [
-        'created_at'
-    ];
+    // protected $fillable = [
+    //     'created_at'
+    // ];
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i',
