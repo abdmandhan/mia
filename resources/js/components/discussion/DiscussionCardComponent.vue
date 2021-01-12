@@ -20,7 +20,7 @@
     </v-card-title>
     <v-card-text>
       {{ item.text }}
-      <div class="text-right">{{ item.created_at }}</div>
+      <div class="text-right">{{ item.created_time }}</div>
       <!-- REPLIES -->
       <div
         v-for="reply in item.replies"
@@ -38,7 +38,7 @@
         </div>
         {{ reply.text }}
         <div class="text-right">
-          {{ item.created_at }}
+          {{ reply.created_time }}
           <v-btn icon @click="removeComment(reply)">
             <v-icon color="red">mdi-trash-can</v-icon>
           </v-btn>
