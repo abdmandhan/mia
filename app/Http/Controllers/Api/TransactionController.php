@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\CourseStudent;
+use App\Models\CourseTaskStudent;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -66,6 +68,8 @@ class TransactionController extends Controller
                     'user_id'       => $transaction->user_id,
                     'course_id'     => $transaction->course_id,
                 ]);
+
+                CourseTaskStudent::create([]);
             }
         }
 
@@ -126,6 +130,18 @@ class TransactionController extends Controller
                     'user_id'       => $transaction->user_id,
                     'course_id'     => $transaction->course_id,
                 ]);
+
+
+                $course = Course::findOrFail($transaction->course_id);
+
+                $course_task = $course->course_task()->get();
+                foreach ($course_task as $key => $value) {
+                    CourseTaskStudent::create([
+                        'user_id'       => $transaction->user_id,
+                        'course_id'     => $transaction->course_id,
+                        'course_task_id'    => $value->id,
+                    ]);
+                }
             }
         }
 
