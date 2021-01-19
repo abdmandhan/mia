@@ -26,16 +26,16 @@ class TryoutSeeder extends Seeder
             [
                 'name'              => 'TRY OUT NASIONAL 1',
                 'difficulty_id'     => Difficulty::all()->random()->id,
-                'date_start'        => $faker->dateTime(),
-                'date_finish'       => $faker->dateTime(),
-                'time'              => $faker->time()
+                'date_start'        => '2021-01-01',
+                'date_finish'       => '2021-02-01',
+                'time'              => '00:30:00'
             ],
             [
                 'name'              => 'TRY OUT NASIONAL 2',
                 'difficulty_id'     => Difficulty::all()->random()->id,
-                'date_start'        => $faker->dateTime(),
-                'date_finish'       => $faker->dateTime(),
-                'time'              => $faker->time()
+                'date_start'        => '2021-01-01',
+                'date_finish'       => '2021-02-01',
+                'time'              => '00:30:00'
             ]
         ];
 

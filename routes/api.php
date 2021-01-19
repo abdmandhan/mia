@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\Resource\EducationController;
 use App\Http\Controllers\Api\Resource\GolonganController;
 use App\Http\Controllers\Api\Resource\GradeController;
 use App\Http\Controllers\Api\Resource\PositionController;
+use App\Http\Controllers\Api\Student\TryoutController as StudentTryoutController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\TryoutController;
 use App\Http\Controllers\Api\TryoutQuestionController;
@@ -40,6 +41,7 @@ Route::group([
     //page
     Route::get('dashboard', [PageController::class, 'dashboard']);
     Route::get('teacher', [PageController::class, 'teacher']);
+
     Route::get('feedback', [PageController::class, 'feedback']);
     Route::post('feedback', [PageController::class, 'feedbackScore']);
     Route::get('feedback/{feedback_id}', [PageController::class, 'feedbackDetail']);
@@ -56,6 +58,7 @@ Route::group([
     Route::get('s-learning/{task_id}/task', [PageController::class, 'sLearningTask']);
     Route::post('s-learning', [PageController::class, 'sLearningStart']);
     Route::post('s-learning/task', [PageController::class, 'sLearningFinish']);
+    Route::resource('s-tryout', StudentTryoutController::class);
 
     Route::resource('discussion', DiscussionController::class);
     Route::resource('user', UserController::class);

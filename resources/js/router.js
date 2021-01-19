@@ -52,6 +52,8 @@ import STransactionDetail from './components/student/STransactionDetailComponent
 import SLearning from './components/student/SLearningComponent'
 import SLearningDetail from './components/student/SLearningDetailComponent'
 import SLearningTask from './components/student/SLearningTaskComponent'
+import STryout from './components/student/STryoutComponent'
+import STryoutDetail from './components/student/STryoutDetailComponent'
 
 //teacher
 import Feedback from './components/feedback/FeedbackComponent'
@@ -289,6 +291,17 @@ const router = new VueRouter({
                     component: SLearningTask
                 },
 
+                //Tryout
+                {
+                    path: "/s-tryout",
+                    name: "s-tryout",
+                    component: STryout
+                },
+                {
+                    path: "/s-tryout/:tryout_id",
+                    name: "s-tryout.detail",
+                    component: STryoutDetail
+                },
 
 
             ]

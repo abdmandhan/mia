@@ -165,6 +165,11 @@ export default {
           icon: "mdi-book-open",
           title: "Learning",
         },
+        {
+          name: "s-tryout",
+          icon: "mdi-clipboard-list-outline",
+          title: "Tryout",
+        },
       ],
       menu_teacher: [
         {

@@ -34,8 +34,36 @@
               mdi-checkbox-blank-circle-outline
             </v-icon>
             <div>
-              <span class="font-weight-bold">{{ item.title }}</span>
-              <div>{{ item.created_at }}</div>
+              <span class="font-weight-bold">
+                {{ item.title }}
+              </span>
+              <v-dialog v-model="dialog[item.id]" width="500">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn color="primary" v-bind="attrs" v-on="on" small icon>
+                    <v-icon>mdi-clipboard-search-outline</v-icon>
+                  </v-btn>
+                </template>
+
+                <v-card>
+                  <v-card-title class="headline grey lighten-2">
+                    {{ item.title }}
+                  </v-card-title>
+
+                  <v-card-text>
+                    {{ item.content }}
+                  </v-card-text>
+
+                  <v-divider></v-divider>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="red" text @click="dialog[item.id] = false">
+                      Close
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+              <div>{{ item.created_time }}</div>
             </div>
           </span>
         </template>
@@ -48,6 +76,11 @@
 import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {
+      dialog: {},
+    };
+  },
   props: {
     announcements: {
       type: Array,

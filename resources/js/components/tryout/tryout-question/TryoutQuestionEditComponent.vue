@@ -75,6 +75,7 @@ export default {
         }
       ).then((result) => {
         if (result.status == 200) {
+          this.back();
         } else {
           this.errors = result.data.errors;
         }

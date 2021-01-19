@@ -88,7 +88,7 @@ class AuthController extends Controller
             'grades'        => Grade::all(['id', 'name']),
             'course_types'  => CourseType::all(['id', 'name']),
             'courses'       => Course::all(['id', 'name']),
-            'difficulties'  => Difficulty::all(['id', 'name']),
+            'difficulties'  => Difficulty::all(['id', 'name', 'color']),
             'question_types'  => QuestionType::all(['id', 'name']),
             'teachers'       => User::where('user_type_id', 2)->get(['id', 'name']),
             'transaction_statuses'  => TransactionStatus::all(['id', 'name']),

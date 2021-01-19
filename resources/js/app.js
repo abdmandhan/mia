@@ -10,7 +10,9 @@ import store from "./services/store";
 import App from './App.vue'
 import ApiService from './services/api.service';
 import { VERIFY_AUTH } from "./services/store/auth.module";
+import vueAwesomeCountdown from 'vue-awesome-countdown'
 
+Vue.use(vueAwesomeCountdown, 'vac')
 Vue.use(snackbar, { store })
 
 const files = require.context('./', true, /\.vue$/i)
