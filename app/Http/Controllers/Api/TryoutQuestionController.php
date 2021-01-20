@@ -112,7 +112,7 @@ class TryoutQuestionController extends Controller
         TryoutQuestion::find($id)->update(['question' => $data['question']]);
 
         foreach ($data['answer'] as $key => $value) {
-            $is_true = $data['is_true'] == $value['id'] ? 1 : 0;
+            $is_true = $data['is_true'] == $key ? 1 : 0;
 
             TryoutAnswer::find($value['id'])->update([
                 'answer'                => $value['answer'],
@@ -132,5 +132,8 @@ class TryoutQuestionController extends Controller
     public function destroy($id)
     {
         //
+        TryoutQuestion::find($id)->delete();
+
+        return $this->success();
     }
 }

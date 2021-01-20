@@ -192,6 +192,11 @@ export default {
           icon: "mdi-book-open-variant",
           title: "Feedback",
         },
+        {
+          name: "tryout-management",
+          icon: "mdi-book-check-outline",
+          title: "Tryout Management",
+        },
       ],
       menu_admin: [
         {

@@ -13,6 +13,8 @@ class Tryout extends Base
     ];
 
     protected $casts = [
+        'id'            => 'integer',
+        'is_show_review'    => 'integer',
         'created_at' => 'datetime:Y-m-d H:i:s',
         'date_start'    => 'datetime:Y-m-d',
         'date_finish'    => 'datetime:Y-m-d',

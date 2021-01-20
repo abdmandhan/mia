@@ -96,7 +96,7 @@ const router = new VueRouter({
 
                 //Tryout Question
                 {
-                    path: "/tryout-question-management/create",
+                    path: "/tryout-question-management/:tryout_id/create",
                     name: "tryout-question-management.create",
                     component: TryoutQuestionCreate
                 },

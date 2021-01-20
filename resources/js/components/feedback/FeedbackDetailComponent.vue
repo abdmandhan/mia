@@ -38,6 +38,13 @@
           </tr>
         </tbody>
       </v-simple-table>
+      <div class="mt-4">
+        {{ feedback.link }}
+        <v-btn icon :href="feedback.link" target="_blank">
+          <v-icon>mdi-google-drive</v-icon>
+        </v-btn>
+      </div>
+
       <v-text-field
         v-model="feedback.score"
         label="Score"

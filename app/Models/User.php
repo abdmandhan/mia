@@ -43,6 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+        'id'            => 'integer',
         'email_verified_at' => 'datetime',
         'user_type_id'  => 'integer'
     ];

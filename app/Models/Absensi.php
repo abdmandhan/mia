@@ -10,6 +10,8 @@ class Absensi extends Base
     ];
 
     protected $casts = [
+        'id'            => 'integer',
+
         'timed' => 'boolean'
     ];
 

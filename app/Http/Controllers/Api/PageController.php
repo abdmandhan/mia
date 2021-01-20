@@ -215,8 +215,16 @@ class PageController extends Controller
 
     public function sLearningFinish(Request $request)
     {
+        $data = $request->validate([
+            'answer'        => ['required'],
+            'task'          => ['required'],
+            'task.id'       => ['required'],
+            'task.link'     => ['required']
+        ]);
+
         $answer = (object) $request->input('answer');
         $task = (object) $request->input('task');
+
 
         foreach ($answer as $key => $value) {
             if (is_integer($value)) {
@@ -244,7 +252,8 @@ class PageController extends Controller
 
         $course_task_student = CourseTaskStudent::where('user_id', Auth::id())->where('course_task_id', $task->id);
         $course_task_student->update([
-            'finish_date'   => now()
+            'finish_date'   => now(),
+            'link'          => $task->link
         ]);
 
         return $this->success();

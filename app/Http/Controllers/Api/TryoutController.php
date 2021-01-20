@@ -45,6 +45,7 @@ class TryoutController extends Controller
             'date_start'        => ['required', 'date'],
             'date_finish'       => ['required', 'date', 'after:date_start'],
             'time'              => ['required'],
+            'is_show_review'    => ['required']
         ]);
 
         $tryout = Tryout::create($data);
@@ -92,6 +93,7 @@ class TryoutController extends Controller
             'date_start'        => ['required', 'date'],
             'date_finish'       => ['required', 'date', 'after:date_start'],
             'time'              => ['required'],
+            'is_show_review'    => ['required']
         ]);
 
         Tryout::find($id)->update($data);

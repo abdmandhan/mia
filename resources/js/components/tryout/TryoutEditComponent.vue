@@ -30,6 +30,13 @@
             v-model="tryout.date_finish"
             label="Finish Date"
             type="date"
+            :error-messages="errors.date_finish"
+          />
+
+          <v-checkbox
+            v-model="tryout.is_show_review"
+            label="Show Review ?"
+            :error-messages="errors.is_show_review"
           />
         </v-col>
       </v-row>
@@ -130,7 +137,7 @@ export default {
       );
     },
     back() {
-      this.$router.back();
+      this.$router.push({ name: "tryout-management" });
     },
     createItem() {
       this.$router.push({ name: "tryout-question-management.create" });
@@ -169,6 +176,7 @@ export default {
         _method: "PUT",
       }).then((result) => {
         if (result.status == 200) {
+          this.back();
         } else {
           this.errors = result.data.errors;
         }

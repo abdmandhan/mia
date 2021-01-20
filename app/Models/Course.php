@@ -5,7 +5,9 @@ namespace App\Models;
 class Course extends Base
 {
     protected $casts = [
+        'id'            => 'integer',
         'is_premium'    => 'boolean'
+
     ];
 
     public function getCourseTypeNameAttribute()

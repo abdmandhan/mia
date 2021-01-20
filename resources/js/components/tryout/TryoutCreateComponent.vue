@@ -40,6 +40,12 @@
             type="date"
             :error-messages="errors.date_finish"
           />
+
+          <v-checkbox
+            v-model="tryout.is_show_review"
+            label="Show Review ?"
+            :error-messages="errors.is_show_review"
+          />
         </v-col>
       </v-row>
     </v-card-text>

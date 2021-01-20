@@ -5,6 +5,8 @@ namespace App\Models;
 class CourseStudent extends Base
 {
     protected $casts = [
+        'id'            => 'integer',
+
         'is_complete'    => 'boolean'
     ];
 

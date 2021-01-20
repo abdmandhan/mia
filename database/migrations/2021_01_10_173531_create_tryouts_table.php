@@ -20,6 +20,7 @@ class CreateTryoutsTable extends Migration
             $table->dateTime('date_start');
             $table->dateTime('date_finish');
             $table->time('time');
+            $table->boolean('is_show_review')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -19,6 +19,7 @@ class Base extends Model
     // ];
 
     protected $casts = [
+        'id'            => 'integer',
         'created_at' => 'datetime:Y-m-d H:i:s',
     ];
 

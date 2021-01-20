@@ -22,6 +22,7 @@ class CreateCourseTaskStudentsTable extends Migration
             $table->integer('score')->nullable();
             $table->dateTime('start_date')->nullable();
             $table->dateTime('finish_date')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

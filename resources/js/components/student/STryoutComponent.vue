@@ -28,9 +28,6 @@
                       <td v-if="item.student_assign.score">
                         {{ item.student_assign.score }}
                       </td>
-                      <td v-else>
-                        <v-chip small>Menunggu dinilai oleh guru.</v-chip>
-                      </td>
                     </tr>
                   </tbody>
                 </template>
@@ -60,6 +57,8 @@
                             <th>No</th>
                             <th>Question</th>
                             <th>Your Answer</th>
+                            <th v-if="item.is_show_review">True Answer</th>
+                            <th v-if="item.is_show_review">Review</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -75,6 +74,20 @@
                             </td>
                             <td v-else>
                               {{ a.answer.answer }}
+                            </td>
+                            <td v-if="item.is_show_review">
+                              {{ a.question.true_answer.answer }}
+                            </td>
+                            <td v-if="item.is_show_review">
+                              <v-icon
+                                color="success"
+                                v-if="a.answer.id == a.question.true_answer.id"
+                              >
+                                mdi-check-decagram
+                              </v-icon>
+                              <v-icon v-else color="red">
+                                mdi-close-circle
+                              </v-icon>
                             </td>
                           </tr>
                         </tbody>

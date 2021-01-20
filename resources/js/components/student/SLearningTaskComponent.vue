@@ -7,28 +7,37 @@
     </v-card-title>
     <v-card-text>
       <v-row>
-        <v-card
-          v-for="(item, i) in task.course_task_question"
-          :key="i"
-          class="mb-5"
-        >
-          <v-card-title>{{ i + 1 }}. {{ item.question }}</v-card-title>
-          <v-card-text>
-            <v-radio-group
-              v-model="answer[item.id]"
-              v-if="item.question_type_id == 1"
-            >
-              <v-radio
-                v-for="(ans, j) in item.answer"
-                :key="j"
-                :label="ans.answer"
-                :value="ans.id"
-                color="success"
-              ></v-radio>
-            </v-radio-group>
-            <v-textarea v-else v-model="answer[item.id]"> </v-textarea>
-          </v-card-text>
-        </v-card>
+        <v-col cols="12">
+          <v-card
+            v-for="(item, i) in task.course_task_question"
+            :key="i"
+            class="mb-5"
+          >
+            <v-card-title>{{ i + 1 }}. {{ item.question }}</v-card-title>
+            <v-card-text>
+              <v-radio-group
+                v-model="answer[item.id]"
+                v-if="item.question_type_id == 1"
+              >
+                <v-radio
+                  v-for="(ans, j) in item.answer"
+                  :key="j"
+                  :label="ans.answer"
+                  :value="ans.id"
+                  color="success"
+                ></v-radio>
+              </v-radio-group>
+              <v-textarea v-else v-model="answer[item.id]"> </v-textarea>
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="12">
+          <v-text-field
+            v-model="task.link"
+            label="Link"
+            :error-messages="errors.task.link"
+          />
+        </v-col>
       </v-row>
       <v-row v-if="!loading">
         <v-col cols="12" class="text-right">
@@ -97,6 +106,11 @@ export default {
       btnLoading: false,
       message: false,
       loading: true,
+      errors: {
+        task: {
+          link: null,
+        },
+      },
     };
   },
   mounted() {
@@ -122,6 +136,11 @@ export default {
       this.message = false;
     },
     postTask() {
+      this.errors = {
+        task: {
+          link: null,
+        },
+      };
       //validasi answer harus dijawab semua
       this.message = false;
       for (const key in this.answer) {
@@ -137,8 +156,12 @@ export default {
         task: this.task,
         answer: this.answer,
       }).then((result) => {
+        if (result.status == 200) {
+          // this.$router.back();
+        } else {
+          this.errors = result.data.errors;
+        }
         this.btnLoading = false;
-        this.$router.back();
       });
     },
   },

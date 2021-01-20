@@ -5,6 +5,7 @@ namespace App\Models;
 class Discussion extends Base
 {
     protected $casts = [
+        'id'            => 'integer',
         'created_at'    => 'date:Y-m-d H:i:s',
         'is_done'       => 'boolean'
     ];

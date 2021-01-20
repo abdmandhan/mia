@@ -35,9 +35,9 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    <template v-slot:item.is_premium="{ item }">
-      <v-chip v-if="item.is_premium" small>PREMIUM</v-chip>
-      <v-chip v-else small>FREE</v-chip>
+    <template v-slot:item.is_show_review="{ item }">
+      <v-chip v-if="item.is_show_review" small>Yes</v-chip>
+      <v-chip v-else small>No</v-chip>
     </template>
     <template v-slot:item.actions="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)" color="primary">
@@ -66,6 +66,7 @@ export default {
       { text: "Time", value: "time" },
       { text: "Date Start", value: "date_start" },
       { text: "Date Finish", value: "date_finish" },
+      { text: "Show Review", value: "is_show_review" },
       { text: "Actions", value: "actions" },
     ],
     items: [],
