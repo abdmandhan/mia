@@ -16,7 +16,7 @@ class TryoutController extends Controller
     public function index()
     {
         return $this->success(
-            TryOut::with(['difficulty'])->get()->append(['student_assign'])
+            Tryout::with(['difficulty'])->get()->append(['student_assign'])
         );
     }
 
@@ -25,7 +25,7 @@ class TryoutController extends Controller
         $data = (object) $request->input();
         $try_out_student = TryoutStudent::where('user_id', Auth::id())->where('tryout_id', $data->id)->first();
         if (!$try_out_student) {
-            TryOutStudent::create([
+            TryoutStudent::create([
                 'user_id'       => Auth::id(),
                 'tryout_id'    => $data->id,
                 'start_date'    => now(),
@@ -39,7 +39,7 @@ class TryoutController extends Controller
     {
         $tryout_student = TryoutStudent::where('tryout_id', $id)->first();
         if (!$tryout_student->score) {
-            $data = TryOut::with([
+            $data = Tryout::with([
                 'tryout_question.tryout_answer'
             ])->find($id);
 
@@ -65,15 +65,19 @@ class TryoutController extends Controller
             if (TryoutAnswer::find($value)->is_true) $total_score++;
 
             TryoutStudentAnswer::updateOrCreate([
-                'user_id'       => Auth::id(),
-                'tryout_id'       => $id,
-                'question_id'   => $key,
+                'user_id'           => Auth::id(),
+                'tryout_id'         => $id,
+                'question_id'       => $key,
             ], $data);
         }
 
-        $score = $total_score / count($answer) * 100;
+        if ($total_score != 0) {
+            $score = $total_score / count($answer) * 100;
+        } else {
+            $score = 0;
+        }
 
-        $course_task_student = TryOutStudent::where('user_id', Auth::id())->where('tryout_id', $id);
+        $course_task_student = TryoutStudent::where('user_id', Auth::id())->where('tryout_id', $id);
         $course_task_student->update([
             'finish_date'   => now(),
             'score'         => $score

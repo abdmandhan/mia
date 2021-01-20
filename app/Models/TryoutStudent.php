@@ -8,7 +8,7 @@ class TryoutStudent extends Base
 {
     public function tryout_student_answer()
     {
-        return $this->hasMany(TryoutStudentAnswer::class, 'tryout_id')->where('user_id', Auth::id());
+        return $this->hasMany(TryoutStudentAnswer::class, 'tryout_id', 'tryout_id')->where('user_id', Auth::id());
     }
 
     public function tryout()

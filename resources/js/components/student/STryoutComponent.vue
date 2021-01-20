@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                       <td>Score</td>
-                      <td v-if="item.student_assign.score">
+                      <td>
                         {{ item.student_assign.score }}
                       </td>
                     </tr>
