@@ -36,6 +36,18 @@
           label="Address"
           :error-messages="errors.address"
         />
+        <v-text-field
+          v-model="user.password"
+          label="Password"
+          type="password"
+          :error-messages="errors.password"
+        />
+        <v-text-field
+          v-model="user.password_confirmation"
+          label="Confirm Password"
+          type="password"
+          :error-messages="errors.password"
+        />
         <v-file-input
           v-model="user.photo"
           label="Photo"

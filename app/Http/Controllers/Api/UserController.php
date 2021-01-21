@@ -114,6 +114,7 @@ class UserController extends Controller
             'phone'             => ['required'],
             'address'           => ['required'],
             'photo'             => ['required'],
+            'password'          => ['confirmed'],
         ]);
 
         if ($request->file('photo')) {
