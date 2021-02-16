@@ -31,17 +31,23 @@
                 <tr>
                   <td>Education</td>
                   <td>:</td>
-                  <td>{{ item.user_teacher.education.name }}</td>
+                  <td v-if="item.user_teacher">
+                    {{ item.user_teacher.education.name }}
+                  </td>
                 </tr>
                 <tr>
                   <td>Golongan</td>
                   <td>:</td>
-                  <td>{{ item.user_teacher.golongan.name }}</td>
+                  <td v-if="item.user_teacher">
+                    {{ item.user_teacher.golongan.name }}
+                  </td>
                 </tr>
                 <tr>
                   <td>Position</td>
                   <td>:</td>
-                  <td>{{ item.user_teacher.position.name }}</td>
+                  <td v-if="item.user_teacher">
+                    {{ item.user_teacher.position.name }}
+                  </td>
                 </tr>
               </tbody>
             </template>
