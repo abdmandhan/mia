@@ -21,7 +21,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="icon" href="{{ asset('images/icon.png')}}" >
+    <link rel="icon" href="{{ asset('images/icon.png')}}">
+    <meta name="api-base-url" content="{{ url('/') }}" />
+
 </head>
 
 <body style="font-family: Inter">
